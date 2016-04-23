@@ -3,7 +3,7 @@
 
 import Cocoa
 
-struct Person: Hashable {
+struct Person: Hashable, CustomStringConvertible {
     var firstName: String
     var lastName: String
     var email: String
@@ -11,6 +11,12 @@ struct Person: Hashable {
     var hashValue: Int {
         get {
             return "first:\(firstName), last:\(lastName), email:\(email)".hashValue
+        }
+    }
+    
+    var description: String {
+        get {
+            return "name: \(firstName) \(lastName) email: \(email)"
         }
     }
 }
@@ -22,23 +28,15 @@ func ==(lhs: Person, rhs: Person) -> Bool {
 }
 
 // Add custom printing
-// [BET] Why must it be by extension?
-extension Person: CustomStringConvertible {
-    var description: String {
-        get {
-            return "name: \(firstName) \(lastName) email: \(email)"
-        }
-    }
-}
 
-struct PeopleCollection: Hashable {
+struct PeopleCollection: Hashable, CustomStringConvertible {
     var people: Set<Person> = []
     
     mutating func add(person: Person) {
-        // [BET] - is the .contains call necessary?
-        if !people.contains(person) {
+        // [BET] - is the .contains call necessary? Nope
+        //if !people.contains(person) {
             people.insert(person)
-        }
+        //}
     }
     
     mutating func remove(person: Person) -> Person? {
@@ -77,13 +75,7 @@ struct PeopleCollection: Hashable {
             return people.hashValue
         }
     }
-}
-
-func ==(lhs: PeopleCollection, rhs: PeopleCollection) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
-
-extension PeopleCollection: CustomStringConvertible {
+    
     var description: String {
         get {
             var _description: String = ""
@@ -93,6 +85,10 @@ extension PeopleCollection: CustomStringConvertible {
             return _description
         }
     }
+}
+
+func ==(lhs: PeopleCollection, rhs: PeopleCollection) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }
 
 
@@ -107,10 +103,13 @@ peopleList.add(jack)
 peopleList.add(lee)
 peopleList.add(roger)
 peopleList.add(mary)
+peopleList.add(jack) // No error from trying to add Jack again
 peopleList.count
 print(peopleList)
 
 let removeJack = peopleList.remove(jack)
+print(peopleList)
+peopleList.count
 peopleList.add(removeJack!)
 
 let theJones = peopleList.retrieveByLastName("Jones")
