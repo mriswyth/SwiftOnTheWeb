@@ -22,8 +22,17 @@ struct CongratsMessage {
     }
 }
 
-func randomCongrats() -> CongratsMessage {
-    return CongratsMessage()
+func randomCongrats() -> Any? {
+    let r: Int = random() % 3
+    
+    if r == 0 {
+        let value = CongratsMessage()
+        return value
+    } else if r == 1 {
+        return "Congratulations"
+    } else {
+        return nil
+    }
 }
 
 let aRound:PlayerRound? = PlayerRound()
