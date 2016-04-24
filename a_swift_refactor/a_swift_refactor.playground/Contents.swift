@@ -31,8 +31,7 @@ let aRound:PlayerRound? = PlayerRound()
 if let playerScore = aRound?.roundScore where 5...10 ~= playerScore
 {
     print("Score gets an A+")
-    let iterationNum = [1,2,3]
-    for i in 0...iterationNum.count
+    for _ in 1...3
     {
         print("Awesome, we are showing a victory message!!")
         let message = randomCongrats()
