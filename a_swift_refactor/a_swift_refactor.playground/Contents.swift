@@ -46,9 +46,9 @@ if let playerScore = aRound?.roundScore where 5...10 ~= playerScore
         let message = randomCongrats() ?? "WooHoo - great score"
         switch message
         {
-        case let message where message is String:
+        case is String:
             print(message)
-        case let message where message is CongratsMessage:
+        case is CongratsMessage:
             print(message.roundCongrats)
         default:
             print("Uh oh")
