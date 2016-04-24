@@ -8,6 +8,10 @@ import Cocoa
 //CongratsMessage is also a struct with a roundCongrats String
 struct PlayerRound {
     var roundScore: Int?
+    
+    init () {
+        roundScore = 4
+    }
 }
 
 struct CongratsMessage {
@@ -26,7 +30,7 @@ let aRound:PlayerRound? = PlayerRound()
 
 if aRound != nil
 {
-    if aRound?.roundScore >= 5 && aRound?.roundScore <= 10
+    if 5...10 ~= aRound!.roundScore!
     {
         print("Score gets an A+")
         let iterationNum = [1,2,3]
