@@ -18,18 +18,22 @@ struct CongratsMessage {
     }
 }
 
+func randomCongrats() -> CongratsMessage {
+    return CongratsMessage()
+}
+
 let aRound:PlayerRound? = PlayerRound()
 
 if aRound != nil
 {
-    if aRound?.roundScore? >= 5 && aRound?.roundScore? <= 10
+    if aRound?.roundScore >= 5 && aRound?.roundScore <= 10
     {
-        print(“Score gets an A+”)
+        print("Score gets an A+")
         let iterationNum = [1,2,3]
-        for i in 0…iterationNum.count
+        for i in 0...iterationNum.count
         {
-            print(“Awesome, we are showing a victory message!!”)
-            let message = self.randomCongrats()
+            print("Awesome, we are showing a victory message!!")
+            let message = randomCongrats()
             switch message
             {
             case let message where message is String:
@@ -37,7 +41,7 @@ if aRound != nil
             case let message where message is CongratsMessage:
                 print(message.roundCongrats)
             default:
-                print(“Uh oh”)
+                print("Uh oh")
             }
         }
     }
