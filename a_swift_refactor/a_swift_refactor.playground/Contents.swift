@@ -39,10 +39,12 @@ let aRound:PlayerRound? = PlayerRound()
 
 if let playerScore = aRound?.roundScore where 5...10 ~= playerScore
 {
-    print("Score gets an A+")
+    print("Invoking \(__FUNCTION__) on \(__LINE__)")
+    //print("Invoking \(#function) on \(#line)")
     for _ in 1...3
     {
-        print("Awesome, we are showing a victory message!!")
+        print("Invoking \(__FUNCTION__) on \(__LINE__)")
+        //print("Invoking \(#function) on \(#line)")
         let message = randomCongrats() ?? "WooHoo - great score"
         switch message
         {
