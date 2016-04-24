@@ -6,6 +6,17 @@ import Cocoa
 
 //Assume PlayerRound is a simple struct with a roundScore Int
 //CongratsMessage is also a struct with a roundCongrats String
+struct PlayerRound {
+    var roundScore: Int?
+}
+
+struct CongratsMessage {
+    var roundCongrats: String
+    
+    init() {
+        roundCongrats = "Congrats"
+    }
+}
 
 let aRound:PlayerRound? = PlayerRound()
 
