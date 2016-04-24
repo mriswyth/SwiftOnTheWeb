@@ -28,25 +28,22 @@ func randomCongrats() -> CongratsMessage {
 
 let aRound:PlayerRound? = PlayerRound()
 
-if aRound != nil
+if let playerScore = aRound?.roundScore where 5...10 ~= playerScore
 {
-    if 5...10 ~= aRound!.roundScore!
+    print("Score gets an A+")
+    let iterationNum = [1,2,3]
+    for i in 0...iterationNum.count
     {
-        print("Score gets an A+")
-        let iterationNum = [1,2,3]
-        for i in 0...iterationNum.count
+        print("Awesome, we are showing a victory message!!")
+        let message = randomCongrats()
+        switch message
         {
-            print("Awesome, we are showing a victory message!!")
-            let message = randomCongrats()
-            switch message
-            {
-            case let message where message is String:
-                print(message)
-            case let message where message is CongratsMessage:
-                print(message.roundCongrats)
-            default:
-                print("Uh oh")
-            }
+        case let message where message is String:
+            print(message)
+        case let message where message is CongratsMessage:
+            print(message.roundCongrats)
+        default:
+            print("Uh oh")
         }
     }
 }
